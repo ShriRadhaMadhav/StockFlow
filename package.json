@@ -10,6 +10,7 @@
     "build:client": "npm run build --prefix client",
     "build:server": "npm run build --prefix server",
     "build": "npm run build:client && npm run build:server",
+    "vercel-build": "npm run install:all && npm run build:client",
     "dev": "npx concurrently -k -p \"[{name}]\" -n \"Client,Server\" -c \"cyan,green\" \"npm run dev:client\" \"npm run dev:server\""
   }
 }
