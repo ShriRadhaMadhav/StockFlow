@@ -1,0 +1,44 @@
+# Render Blueprint Configuration (render.yaml)
+# Use this to deploy StockFlow with one click on Render.com
+
+services:
+  # -------------------------------------------------------------
+  # 1. Express Backend Web Service
+  # -------------------------------------------------------------
+  - type: web
+    name: stockflow-backend
+    env: node
+    plan: starter
+    rootDir: server
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 5001
+      - key: MONGODB_URI
+        sync: false # Set in the Render dashboard
+      - key: JWT_SECRET
+        sync: false # Set in the Render dashboard
+      - key: GEMINI_API_KEY
+        sync: false # Set in the Render dashboard
+
+  # -------------------------------------------------------------
+  # 2. React Vite Frontend Static Site
+  # -------------------------------------------------------------
+  - type: web
+    name: stockflow-frontend
+    env: static
+    plan: free
+    rootDir: client
+    buildCommand: npm install && npm run build
+    publishDir: dist
+    envVars:
+      - key: VITE_API_URL
+        sync: false # Set to the backend service URL (e.g., https://stockflow-backend.onrender.com/api/v1)
+    routes:
+      # Fallback to index.html for React Router SPA routing
+      - type: rewrite
+        source: /*
+        destination: /index.html
