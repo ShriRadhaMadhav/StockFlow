@@ -1,0 +1,51 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Dependencies
+node_modules/
+client/node_modules/
+server/node_modules/
+
+# Build output
+dist/
+client/dist/
+dist-ssr/
+server/dist/
+build/
+coverage/
+
+# Environment files
+.env
+.env.*
+!.env.example
+!.env.*.example
+
+# Local caches
+.vite/
+client/.vite/
+.turbo/
+.cache/
+*.tsbuildinfo
+
+# Prisma local artifacts
+server/prisma/dev.db
+server/prisma/dev.db-journal
+
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

@@ -1,0 +1,15 @@
+{
+  "name": "stockflow-workspace",
+  "private": true,
+  "version": "1.0.0",
+  "description": "StockFlow Workspace orchestrating both client and server sub-packages",
+  "scripts": {
+    "install:all": "npm install --prefix client && npm install --prefix server",
+    "dev:client": "npm run dev --prefix client",
+    "dev:server": "npm run dev --prefix server",
+    "build:client": "npm run build --prefix client",
+    "build:server": "npm run build --prefix server",
+    "build": "npm run build:client && npm run build:server",
+    "dev": "npx concurrently -k -p \"[{name}]\" -n \"Client,Server\" -c \"cyan,green\" \"npm run dev:client\" \"npm run dev:server\""
+  }
+}
